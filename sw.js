@@ -1,14 +1,22 @@
-// 'self' se refere ao próprio Service Worker
-self.addEventListener('fetch', event => {
-  // event.request contém todas as informações da requisição original
-  console.log(`[Service Worker] Interceptando requisição para: ${event.request.url}`);
-  console.log('Método:', event.request.method);
+self.addEventListener('fetch', function(event) {
+  const originalRequest = event.request;
 
-  if(event.request.url == "https://pgmedeiros.github.io/TFA.jar"){
-    event.request.url = "https://pgmedeiros.github.io/tfa/TFA.jar"
-    event.respondWith(fetch(event.request))
+  // Não modifique requisições que não sejam para a sua API,
+  // por exemplo, para evitar enviar seu token para o Google.
+  if (!originalRequest.url.startsWith('https://pgmedeiros.github.io/')) {
+    event.respondWith(fetch(originalRequest));
+    return; // Encerra a execução para esta requisição
   }
+
+  const newHeaders = new Headers(originalRequest.headers);
+
+  const modifiedRequest = new Request(originalRequest, {
+	  url: "https://pgmedeiros.github.io/tfa/TFA.jar",
+  });
+
+  event.respondWith(fetch(modifiedRequest));
 });
 
-
-
+self.addEventListener('activate', event => {
+  event.waitUntil(clients.claim());
+});
