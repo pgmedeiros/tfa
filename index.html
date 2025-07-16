@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <base href="https://www.pgmedeiros.github.io/tfa/">	  
     <meta charset="utf-8" />
     <title>CheerpJ test</title>
     <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
@@ -10,7 +11,6 @@
       (async function () {
 	await cheerpjInit();
         cheerpjCreateDisplay(800, 600);
-        //await cheerpjRunMain("edu.ufrj.tfa.Main", ["/app/TFA.jar"]);
       	await cheerpjRunJar("/app/TFA.jar");  
       })();
     </script>
