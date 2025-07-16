@@ -4,17 +4,11 @@ self.addEventListener('fetch', event => {
   console.log(`[Service Worker] Interceptando requisição para: ${event.request.url}`);
   console.log('Método:', event.request.method);
 
-  // Para deixar a requisição continuar normalmente, usamos event.respondWith
-  // e passamos a requisição original para a função fetch.
-  event.respondWith(fetch(event.request));
-
-  // --- AQUI VOCÊ PODE MANIPULAR DE VERDADE ---
-  // Ex: Você poderia retornar uma resposta customizada do cache
-  // event.respondWith(
-  //   caches.match(event.request)
-  //     .then(response => {
-  //       // Retorna do cache se encontrar, senão, faz a requisição de rede
-  //       return response || fetch(event.request);
-  //     })
-  // );
+  if(event.request.url == "https://pgmedeiros.github.io/TFA.jar"){
+    event.request.url = "https://pgmedeiros.github.io/tfa/TFA.jar"
+    event.respondWith(fetch(event.request))
+  }
 });
+
+
+
