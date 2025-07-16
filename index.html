@@ -8,20 +8,11 @@
   <body>
     <script>
       (async function () {
-	await cheerpjInit({
-          vfs: {
-	    mounts: [
-              {
-                type: "url",
-                path: "/app/",
-                url: "https://pgmedeiros.github.io/tfa/"
-              }
-             ]
-	  }
-        });
+	await cheerpjInit();
         cheerpjCreateDisplay(800, 600);
-        await cheerpjRunMain("edu.ufrj.tfa.Main", ["/app/TFA.jar"]);
-        })();
+        //await cheerpjRunMain("edu.ufrj.tfa.Main", ["/app/TFA.jar"]);
+      	await cheerpjRunJar("/app/TFA.jar");  
+      })();
     </script>
   </body>
 </html>
