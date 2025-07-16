@@ -1,17 +1,16 @@
 self.addEventListener('fetch', function(event) {
   const originalRequest = event.request;
 
-  // Não modifique requisições que não sejam para a sua API,
-  // por exemplo, para evitar enviar seu token para o Google.
   if (!originalRequest.url.startsWith('https://pgmedeiros.github.io/')) {
     event.respondWith(fetch(originalRequest));
-    return; // Encerra a execução para esta requisição
+    return;
   }
 
-  const newHeaders = new Headers(originalRequest.headers);
-
-  const modifiedRequest = new Request(originalRequest, {
-	  url: "https://pgmedeiros.github.io/tfa/TFA.jar",
+  const modifiedRequest = new Request("https://pgmedeiros.github.io/tfa/TFA.jar", {
+	  headers: originalRequest.headers, 
+	  body: originalRequest.body,
+	  method: originalRequest.method, 
+	  redirect: 'follow'
   });
 
   event.respondWith(fetch(modifiedRequest));
