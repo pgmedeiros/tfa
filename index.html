@@ -6,11 +6,23 @@
 	<script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
 </head>
 <style>
+	
+	html, body {
+		height: 100%;
+		margin: 0;
+	}
+
 	body {
-		min-height: 100vh
+		display: flex;
+		flex-direction: column;
+	}
+	#frame {
+		flex: 1; 
 	}
 </style>
 <body>
+	<div id="frame">
+	</div>
 	<script defer>
 		  const create = async () => {
 		  try {
@@ -18,12 +30,12 @@
 			  console.log('Service Worker registrado.:', registration)
 			  await cheerpjInit()
 			  console.log('cheerpj iniciado com sucesso.')
-			  cheerpjCreateDisplay(-1,-1, document.body)
+			  cheerpjCreateDisplay(-1,-1, document.getElementById('frame'))
 			  await cheerpjRunJar("/app/TFA.jar")
 			  console.log('jar executado com sucesso.')
 		  } catch(error) {
 			  console.log(error)
-		  }
+			  }
 	  	}
 	  	create()
 	</script>
