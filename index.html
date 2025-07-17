@@ -1,26 +1,31 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>CheerpJ test</title>
-    <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
-  </head>
-  <body>
-    <script>
-	const create = async () => {
-		try {
-			const registration = await navigator.serviceWorker.register('sw.js')
-			console.log('Service Worker registrado.:', registration)
-			await cheerpjInit()
-			console.log('cheerpj iniciado com sucesso.')
-			cheerpjCreateDisplay(800,600)
-			await cheerpjRunJar("/app/TFA.jar")
-			console.log('jar executado com sucesso.')
-		} catch(error) {
-			console.log(error)
-		}
+<head>
+	<meta charset="utf-8" />
+	<title>CheerpJ test</title>
+	<script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+</head>
+<style>
+	body {
+		min-height: 100vh
 	}
-	create()
-    </script>
+</style>
+<body>
+	<script defer>
+		  const create = async () => {
+		  try {
+			  const registration = await navigator.serviceWorker.register('sw.js')
+			  console.log('Service Worker registrado.:', registration)
+			  await cheerpjInit()
+			  console.log('cheerpj iniciado com sucesso.')
+			  cheerpjCreateDisplay(-1,-1, document.body)
+			  await cheerpjRunJar("/app/TFA.jar")
+			  console.log('jar executado com sucesso.')
+		  } catch(error) {
+			  console.log(error)
+		  }
+	  	}
+	  	create()
+	</script>
   </body>
 </html>
