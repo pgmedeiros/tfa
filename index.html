@@ -13,7 +13,7 @@
 			console.log('Service Worker registrado.:', registration)
 			await cheerpjInit()
 			console.log('cheerpj iniciado com sucesso.')
-			cheerpjCreateDisplay(-1,-1, document.body)
+			cheerpjCreateDisplay(800,600)
 			await cheerpjRunJar("/app/TFA.jar")
 			console.log('jar executado com sucesso.')
 		} catch(error) {
