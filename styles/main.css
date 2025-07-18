@@ -1,0 +1,27 @@
+body {
+		background-color: gray;
+		padding: 0;
+		margin: 0; 
+	}
+
+	@media(orientation: portrait) {
+
+		#frame {
+			aspect-ratio: 8/6;
+			min-width: 320px;
+			max-width: 800px;
+			margin: auto;
+		}
+	}
+
+	@media(orientation: landscape) {
+		
+		#frame {
+			
+			aspect-ratio: 8/6;
+			min-height:300px;
+			max-height:600px;
+			margin: auto;
+		}
+	}
+

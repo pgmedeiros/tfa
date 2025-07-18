@@ -4,61 +4,12 @@
 	<meta charset="utf-8" />
 	<title>CheerpJ test</title>
 	<script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+	<script src="scripts/app.js" defer></script>
+	<link rel="stylesheet" href="styles/main.css">
 </head>
-<style>
-	body {
-		background-color: gray;
-		padding: 0;
-		margin: 0; 
-	}
-
-	@media(orientation: portrait) {
-
-		#frame {
-			aspect-ratio: 8/6;
-			min-width: 320px;
-			max-width: 800px;
-			margin: auto;
-		}
-	}
-
-	@media(orientation: landscape) {
-		
-		#frame {
-			
-			aspect-ratio: 8/6;
-			min-height:300px;
-			max-height:600px;
-			margin: auto;
-		}
-	}
-</style>
 <body>
 	<button id='fullscreen'>fullscreen</button>
 	<div id="frame">
 	</div>
-	<script defer>
-		const fullscreenButton = document.getElementById('fullscreen');
-		const frame            = document.getElementById('frame');
-		fullscreenButton.addEventListener('click', () => {
-			frame.requestFullscreen().catch(err => {
-				console.log('erro ao tentar entrar em tela cheia');
-			});
-		});		
-		  const create = async () => {
-		  try {
-			  const registration = await navigator.serviceWorker.register('sw.js')
-			  console.log('Service Worker registrado.:', registration)
-			  await cheerpjInit()
-			  console.log('cheerpj iniciado com sucesso.')
-			  cheerpjCreateDisplay(-1,-1, document.getElementById('frame'))
-			  await cheerpjRunJar("/app/TFA.jar")
-			  console.log('jar executado com sucesso.')
-		  } catch(error) {
-			  alert(error)
-			}
-	  	}
-	  	create()
-	</script>
   </body>
 </html>
