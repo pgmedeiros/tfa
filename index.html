@@ -34,9 +34,17 @@
 	}
 </style>
 <body>
+	<button id='fullscreen'>fullscreen</button>
 	<div id="frame">
 	</div>
 	<script defer>
+		const fullscreenButton = document.getElementById('fullscreen');
+		const frame            = document.getElementById('frame');
+		fullscreenButton.addEventListener('click', () => {
+			frame.requestFullscreen().catch(err => {
+				console.log('erro ao tentar entrar em tela cheia');
+			});
+		});		
 		  const create = async () => {
 		  try {
 			  const registration = await navigator.serviceWorker.register('sw.js')
